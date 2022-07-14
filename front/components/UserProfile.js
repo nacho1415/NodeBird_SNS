@@ -1,11 +1,16 @@
 import React, { useCallback } from 'react';
 import { Card, Button, Avatar } from 'antd';
+import { useDispatch } from 'react-redux';
+
+import { logoutAction } from '../reducers/user';
 
 const UserProfile = ({ setIsLoggedIn }) => {
-    const onLogOut = useCallback(() => {
-        setIsLoggedIn(false);
-    }, []);
+    const dispatch = useDispatch();
     
+    const onLogout = useCallback(() => {
+        dispatch(logoutAction());
+    }, []);
+
     return (
         <Card
             actions={[
@@ -18,7 +23,7 @@ const UserProfile = ({ setIsLoggedIn }) => {
                 avatar={<Avatar>ZC</Avatar>}
                 title="ZeroCho"
             />
-            <Button onClick={onLogOut}>로그아웃</Button>
+            <Button onClick={onLogout}>로그아웃</Button>
         </Card>
     )
 }
